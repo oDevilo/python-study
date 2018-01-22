@@ -1,0 +1,5 @@
+host=jixiao.test.superboss.cc
+port=3306
+database=jixiao_fanjinlong
+username=dev
+password=guanghua
