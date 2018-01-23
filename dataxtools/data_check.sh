@@ -52,7 +52,7 @@ for i in $tables;
 do
     echo "开始检查${i}"
     readerCount=`echo "use ${DATABASE};select count(*) as ct from ${i} where shop_id in (${shopids})" | mysql -h ${HOST} -P ${PORT} -u${USERNAME} -p${PASSWORD} -N`
-    writerCount=`echo "use ${DATABASE};select count(*) as ct from ${i} where shop_id in (${shopids})" | mysql -h ${WHOST} -P ${WPORT} -u${WUSERNAME} -p${WPASSWORD} -N`
+    writerCount=`echo "use ${WDATABASE};select count(*) as ct from ${i} where shop_id in (${shopids})" | mysql -h ${WHOST} -P ${WPORT} -u${WUSERNAME} -p${WPASSWORD} -N`
     echo "读表总数${readerCount},写表总数${writerCount}"
     if [ $readerCount == $writerCount ]; then
         echo "数目相等"
