@@ -65,7 +65,7 @@ if [ ! -d "./job" ]; then
 fi
 # 获取所有表名，替换
 # mysql -h jixiao.test.superboss.cc -P 3306 -udev -pguanghua -e "use jixiao_fanjinlong;show tables;" > catfilename
-tables=`echo "use ${DATABASE};show tables;" | mysql -h ${HOST} -P ${PORT} -u${USERNAME} -p${PASSWORD}`
+tables=`echo "select table_name from information_schema.tables where table_schema = '${DATABASE}' and table_type = 'BASE TABLE';" | mysql -h ${HOST} -P ${PORT} -u${USERNAME} -p${PASSWORD}`
 for i in $tables;
 do
     job=${dataj//table-place/${i}}

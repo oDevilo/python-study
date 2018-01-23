@@ -47,7 +47,7 @@ do
 done
 # 获取所有表名
 shopids=`cat shopids.txt`
-tables=`echo "use ${DATABASE};show tables;" | mysql -h ${HOST} -P ${PORT} -u${USERNAME} -p${PASSWORD}`
+tables=`echo "select table_name from information_schema.tables where table_schema = '${DATABASE}' and table_type = 'BASE TABLE';" | mysql -h ${HOST} -P ${PORT} -u${USERNAME} -p${PASSWORD} -N`
 for i in $tables;
 do
     echo "开始检查${i}"
