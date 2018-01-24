@@ -68,6 +68,10 @@ fi
 tables=`echo "select table_name from information_schema.tables where table_schema = '${DATABASE}' and table_type = 'BASE TABLE';" | mysql -h ${HOST} -P ${PORT} -u${USERNAME} -p${PASSWORD}`
 for i in $tables;
 do
-    job=${dataj//table-place/${i}}
-    echo ${job} > job/${i}.json
+    if [ $i == "ts" ]; then
+        echo "跳过表ts"
+    else
+        job=${dataj//table-place/${i}}
+        echo ${job} > job/${i}.json
+    fi
 done
