@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
-x = np.linspace(0, 100,100)
+x = np.linspace(0, 10000,10000)
 # for y in range(1, 51):
 #     z = x / (x + 300 + 50 * y)
 #     plt.plot(x,  z, label = y)
