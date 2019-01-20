@@ -1,35 +1,22 @@
-def outter1(func1): #func1=wrapper2的内存地址
-    print('加载了outter1')
-    print(func1)
-    def wrapper1(*args,**kwargs):
-        print('执行了wrapper1')
-        res1=func1(*args,**kwargs)
-        return res1
-    return wrapper1
 
-def outter2(func2): #func2=wrapper3的内存地址
-    print('加载了outter2')
-    def wrapper2(*args,**kwargs):
-        print('执行了wrapper2')
-        res2=func2(*args,**kwargs)
-        return res2
-    return wrapper2
+from urllib.parse import unquote
 
-def outter3(func3): # func3=最原始的那个index的内存地址
-    print('加载了outter3')
-    def wrapper3(*args,**kwargs):
-        print('执行了wrapper3')
-        res3=func3(*args,**kwargs)
-        return res3
-    return wrapper3
+str = "/index.php?title=%E7%89%B9%E6%AE%8A:%E6%9C%80%E8%BF%91%E6%9B%B4%E6%94%B9&feed=atom"
+content = "contest" + str
+afstr = unquote(str)
+print(afstr)
+print(content.replace(str, afstr))
+print(content)
 
+with open('test.html', 'wb+') as wf:
+    fbody = "www.w3cschool.cc"
+    wf.write(fbody.encode())
 
+fbody = ""
+with open('test.html', 'rb+') as rf:
+    fbody = rf.read()
+    print(fbody)
+    fbody = fbody.decode().replace("w3cschool.cc", "runoob.com")
 
-@outter1 # outter1(wrapper2的内存地址)======>index=wrapper1的内存地址
-@outter2 # outter2(wrapper3的内存地址)======>wrapper2的内存地址
-@outter3 # outter3(最原始的那个index的内存地址)===>wrapper3的内存地址
-def index():
-    print('from index')
-
-print('======================================================')
-index()
+with open('test.html', 'wb+') as wf:
+    wf.write(fbody.encode())
