@@ -4,8 +4,13 @@ import scrapy
 
 class BookSpider(scrapy.Spider):
     name = 'book'
-    allowed_domains = ['https://book.douban.com/']
-    start_urls = ['http://https://book.douban.com//']
+    allowed_domains = ['https://read.douban.com/']
+    start_urls = ['https://read.douban.com/category/?kind=105']
 
     def parse(self, response):
-        pass
+        f = open('test.html', 'wb+')
+        f.write(response.body)
+        books = response.xpath('//div')
+        print(len(books))
+        for book in books:
+            print(11111, book.xpath('//span/text()').extract())
